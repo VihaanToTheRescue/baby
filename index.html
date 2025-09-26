@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kavya - My Everything</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #000;
+            --secondary: #fff;
+            --accent: #ff4d6d;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header - Mobile Friendly */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #ff4d6d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section - Mobile Optimized */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 15px;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #222 0%, #000 100%);
+            z-index: -2;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            opacity: 0.1;
+            color: var(--accent);
+            animation: float 15s infinite linear;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.8s;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.2s, bounce 2s infinite 2s;
+        }
+        
+        /* Interactive Name Section - Mobile Optimized */
+        .name-section {
+            padding: 80px 0;
+            background-color: #111;
+            text-align: center;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 0 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+            margin: 15px auto;
+        }
+        
+        .name-container {
+            position: relative;
+            height: 300px;
+            margin: 0 auto;
+            max-width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: manipulation;
+        }
+        
+        .name-display {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        
+        .name-letter {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .name-letter:hover {
+            transform: translateY(-10px);
+            color: var(--accent);
+        }
+        
+        .floating-letter {
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            opacity: 0;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+            user-select: none;
+            pointer-events: auto;
+            will-change: transform;
+        }
+        
+        .name-container.active .floating-letter {
+            opacity: 0.8;
+        }
+        
+        .name-container.active .name-display {
+            opacity: 0.2;
+        }
+        
+        .letter-k { top: 10%; left: 10%; color: #ff4d6d; animation: floatMobile 8s infinite ease-in-out; }
+        .letter-a { top: 30%; left: 60%; color: #ff8fab; animation: floatMobile 7s infinite ease-in-out 1s; }
+        .letter-v { top: 60%; left: 20%; color: #ffb3c6; animation: floatMobile 9s infinite ease-in-out 2s; }
+        .letter-y { top: 70%; left: 70%; color: #ffccd5; animation: floatMobile 6s infinite ease-in-out 3s; }
+        .letter-a2 { top: 40%; left: 40%; color: #fff0f3; animation: floatMobile 10s infinite ease-in-out 4s; }
+        
+        /* Love Message - Mobile Optimized */
+        .love-message {
+            padding: 100px 0;
+            text-align: center;
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .love-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+            padding: 0 15px;
+        }
+        
+        .love-message p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-family: 'Montserrat', sans-serif;
+            padding: 0 15px;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-top: 40px;
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animations - Optimized for Mobile */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        @keyframes floatMobile {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(3deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            5% {
+                transform: scale(1.1);
+            }
+            10% {
+                transform: scale(1);
+            }
+            15% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Mobile-First Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            /* Mobile Navigation */
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            /* Hero Section */
+            .hero {
+                padding-top: 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: 3.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Name Section */
+            .name-section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
+            .name-container {
+                height: 250px;
+            }
+            
+            .name-display {
+                font-size: 3.5rem;
+                gap: 10px;
+            }
+            
+            .floating-letter {
+                font-size: 3.5rem;
+            }
+            
+            /* Love Message */
+            .love-message {
+                padding: 80px 0;
+            }
+            
+            .love-message h2 {
+                font-size: 2.5rem;
+            }
+            
+            .love-message p {
+                font-size: 1.1rem;
+            }
+            
+            .signature {
+                font-size: 1.8rem;
+            }
+            
+            footer {
+                padding: 30px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .name-display {
+                font-size: 2.8rem;
+            }
+            
+            .floating-letter {
+                font-size: 2.8rem;
+            }
+            
+            .love-message h2 {
+                font-size: 2rem;
+            }
+            
+            .love-message p {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Prevent horizontal scroll */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Improve touch interactions */
+        button, .name-letter, .floating-letter {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Performance optimizations */
+        .hero-content h1, .floating-letter, .name-letter {
+            will-change: transform, opacity;
+        }
+        
+        /* Reduced motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Mobile Menu -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Kavya</div>
+                <button class="mobile-menu-btn">☰</button>
+                <ul class="nav-links">
+                    <li><a href="#name">Her Name</a></li>
+                    <li><a href="#message">My Love</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="floating-hearts" id="hearts-container"></div>
+        <div class="hero-content">
+            <h1>Kavya</h1>
+            <p>The most beautiful part of my world</p>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Interactive Name Section -->
+    <section id="name" class="name-section">
+        <div class="container">
+            <h2 class="section-title">The Beauty in Her Name</h2>
+            <p>Tap or hover over the name to see the letters dance</p>
+            <div class="name-container" id="nameContainer">
+                <div class="name-display">
+                    <div class="name-letter">K</div>
+                    <div class="name-letter">A</div>
+                    <div class="name-letter">V</div>
+                    <div class="name-letter">Y</div>
+                    <div class="name-letter">A</div>
+                </div>
+                <div class="floating-letter letter-k" data-letter="K">K</div>
+                <div class="floating-letter letter-a" data-letter="A">A</div>
+                <div class="floating-letter letter-v" data-letter="V">V</div>
+                <div class="floating-letter letter-y" data-letter="Y">Y</div>
+                <div class="floating-letter letter-a2" data-letter="A">A</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Message -->
+    <section id="message" class="love-message">
+        <div class="container">
+            <h2>My Dearest Kavya,</h2>
+            <p>From the moment you entered my life, everything changed. You brought colors to my monochrome world and meaning to my existence.</p>
+            <p>Your smile is my sunrise, your voice my favorite melody, and your presence my greatest comfort.</p>
+            <p>I promise to cherish every moment with you, to support your dreams, and to love you more with each passing day.</p>
+            <p>You are my everything.</p>
+            <div class="signature">Forever yours,<br>Your Baby</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by Vihaan for my Kavya</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Create floating hearts in the background (optimized for mobile)
+        const heartsContainer = document.getElementById('hearts-container');
+        const heartCount = window.innerWidth < 768 ? 10 : 15;
+        
+        for (let i = 0; i < heartCount; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            heart.style.animationDelay = (Math.random() * 5) + 's';
+            heartsContainer.appendChild(heart);
+        }
+
+        // Name container interaction for both desktop and mobile
+        const nameContainer = document.getElementById('nameContainer');
+        let interactionTimeout;
+        
+        // For desktop hover
+        nameContainer.addEventListener('mouseenter', function() {
+            clearTimeout(interactionTimeout);
+            this.classList.add('active');
+        });
+        
+        nameContainer.addEventListener('mouseleave', function() {
+            interactionTimeout = setTimeout(() => {
+                this.classList.remove('active');
+            }, 1000);
+        });
+        
+        // For mobile touch
+        nameContainer.addEventListener('touchstart', function() {
+            clearTimeout(interactionTimeout);
+            this.classList.add('active');
+        });
+        
+        nameContainer.addEventListener('touchend', function() {
+            interactionTimeout = setTimeout(() => {
+                this.classList.remove('active');
+            }, 3000);
+        });
+        
+        // Make letters interactive
+        const letters = document.querySelectorAll('.floating-letter');
+        
+        letters.forEach(letter => {
+            // Click to reveal meaning
+            letter.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const meanings = {
+                    'K': 'Kindness that knows no bounds',
+                    'A': 'Amazing in every way',
+                    'V': 'Vibrant spirit that inspires',
+                    'Y': 'Yearning to make the world better',
+                    'A2': 'Always there when I need you'
+                };
+                
+                const letterChar = this.getAttribute('data-letter');
+                const meaning = meanings[letterChar === 'A2' ? 'A2' : letterChar];
+                
+                // Remove any existing tooltips
+                document.querySelectorAll('.letter-tooltip').forEach(tooltip => {
+                    tooltip.remove();
+                });
+                
+                // Create a tooltip
+                const tooltip = document.createElement('div');
+                tooltip.classList.add('letter-tooltip');
+                tooltip.style.position = 'fixed';
+                tooltip.style.background = 'rgba(255, 77, 109, 0.95)';
+                tooltip.style.color = 'white';
+                tooltip.style.padding = '10px 15px';
+                tooltip.style.borderRadius = '8px';
+                tooltip.style.zIndex = '1000';
+                tooltip.style.fontSize = '1rem';
+                tooltip.style.fontFamily = 'Montserrat, sans-serif';
+                tooltip.style.textAlign = 'center';
+                tooltip.style.maxWidth = '80%';
+                tooltip.style.left = '50%';
+                tooltip.style.top = '50%';
+                tooltip.style.transform = 'translate(-50%, -50%)';
+                tooltip.textContent = meaning;
+                
+                document.body.appendChild(tooltip);
+                
+                // Remove tooltip after 3 seconds
+                setTimeout(() => {
+                    if (tooltip.parentNode) {
+                        tooltip.remove();
+                    }
+                }, 3000);
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to sections
+        document.querySelector('.scroll-indicator').addEventListener('click', function() {
+            document.querySelector('#name').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+        
+        // Improve touch experience
+        document.addEventListener('touchmove', function(e) {
+            // Prevent zooming
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Performance optimization: reduce animations when page is not visible
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                // Pause animations when page is not visible
+                document.querySelectorAll('.heart, .floating-letter').forEach(el => {
+                    el.style.animationPlayState = 'paused';
+                });
+            } else {
+                // Resume animations when page becomes visible again
+                document.querySelectorAll('.heart, .floating-letter').forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
