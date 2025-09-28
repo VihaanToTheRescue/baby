@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kavya - My Everything</title>
+    <title>Kavya - My Wifeyy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
             --primary: #000;
             --secondary: #fff;
             --accent: #ff4d6d;
+            --accent-light: #ff8fab;
         }
         
         body {
@@ -101,7 +102,7 @@
             cursor: pointer;
         }
         
-        /* Hero Section - Mobile Optimized */
+        /* Hero Section - Enhanced with Kiss Text */
         .hero {
             height: 100vh;
             display: flex;
@@ -124,29 +125,49 @@
             z-index: -2;
         }
         
-        .floating-hearts {
+        .particles-container {
             position: absolute;
             width: 100%;
             height: 100%;
             z-index: -1;
         }
         
-        .heart {
+        .particle {
             position: absolute;
-            opacity: 0.1;
-            color: var(--accent);
-            animation: float 15s infinite linear;
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-light);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        
+        .kiss-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--accent-light);
+            margin: 10px 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1s;
         }
         
         .hero-content h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 4rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             color: var(--accent);
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.5s;
             text-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+        }
+        
+        .wifey-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.7s;
         }
         
         .hero-content p {
@@ -155,6 +176,16 @@
             margin: 0 auto 30px;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.8s;
+        }
+        
+        .secret-message {
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .secret-message.show {
+            opacity: 1;
         }
         
         .scroll-indicator {
@@ -167,7 +198,7 @@
             animation: fadeInUp 1s ease forwards 1.2s, bounce 2s infinite 2s;
         }
         
-        /* Interactive Name Section - Mobile Optimized */
+        /* Interactive Name Section - Enhanced with Kiss */
         .name-section {
             padding: 80px 0;
             background-color: #111;
@@ -205,6 +236,7 @@
             justify-content: center;
             align-items: center;
             touch-action: manipulation;
+            cursor: pointer;
         }
         
         .name-display {
@@ -220,11 +252,10 @@
         
         .name-letter {
             position: relative;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
         
-        .name-letter:hover {
+        .name-container.active .name-letter {
             transform: translateY(-10px);
             color: var(--accent);
         }
@@ -240,6 +271,7 @@
             user-select: none;
             pointer-events: auto;
             will-change: transform;
+            touch-action: manipulation;
         }
         
         .name-container.active .floating-letter {
@@ -256,13 +288,171 @@
         .letter-y { top: 70%; left: 70%; color: #ffccd5; animation: floatMobile 6s infinite ease-in-out 3s; }
         .letter-a2 { top: 40%; left: 40%; color: #fff0f3; animation: floatMobile 10s infinite ease-in-out 4s; }
         
-        /* Love Message - Mobile Optimized */
+        /* Kiss Counter Section - New Feature */
+        .kiss-counter {
+            padding: 60px 0;
+            background-color: #000;
+            text-align: center;
+        }
+        
+        .kiss-display {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--accent);
+            margin: 20px 0;
+        }
+        
+        .kiss-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            margin: 10px;
+        }
+        
+        .kiss-btn:hover {
+            background: var(--accent-light);
+            transform: scale(1.05);
+        }
+        
+        .kiss-animation {
+            position: fixed;
+            font-size: 2rem;
+            z-index: 1000;
+            pointer-events: none;
+            animation: kissFloat 3s ease-in-out forwards;
+        }
+        
+        /* Memory Lane Section */
+        .memory-lane {
+            padding: 80px 0;
+            background-color: #000;
+        }
+        
+        .memory-track {
+            position: relative;
+            height: 400px;
+            margin: 40px auto;
+            max-width: 90%;
+            overflow: hidden;
+        }
+        
+        .memory-scroll {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .memory-item {
+            min-width: 300px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin: 0 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .memory-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .memory-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .memory-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+        
+        /* Love Notes Section with Kiss Theme */
+        .love-notes {
+            padding: 80px 0;
+            background-color: #111;
+        }
+        
+        .notes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .note {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .note:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .note-kiss {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent-light);
+            opacity: 0.7;
+        }
+        
+        .note-date {
+            font-size: 0.9rem;
+            color: var(--accent-light);
+            margin-bottom: 10px;
+        }
+        
+        /* Love Message - Enhanced with Kiss Text */
         .love-message {
             padding: 100px 0;
             text-align: center;
             background-color: #000;
             position: relative;
             overflow: hidden;
+        }
+        
+        .message-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .love-message h2 {
@@ -275,10 +465,25 @@
         
         .love-message p {
             font-size: 1.2rem;
-            max-width: 800px;
             margin: 0 auto 30px;
             font-family: 'Montserrat', sans-serif;
             padding: 0 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .love-message p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .kiss-ending {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--accent-light);
+            margin: 30px 0;
+            animation: pulse 2s infinite;
         }
         
         .signature {
@@ -296,7 +501,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* Animations - Optimized for Mobile */
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -320,18 +525,6 @@
             }
         }
         
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-15px) rotate(5deg);
-            }
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-        }
-        
         @keyframes floatMobile {
             0% {
                 transform: translateY(0) rotate(0deg);
@@ -344,25 +537,25 @@
             }
         }
         
-        @keyframes heartbeat {
+        @keyframes kissFloat {
             0% {
-                transform: scale(1);
-            }
-            5% {
-                transform: scale(1.1);
-            }
-            10% {
-                transform: scale(1);
-            }
-            15% {
-                transform: scale(1.2);
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
             50% {
-                transform: scale(1);
+                opacity: 0.8;
+                transform: translateY(-50px) scale(1.2);
             }
             100% {
-                transform: scale(1);
+                opacity: 0;
+                transform: translateY(-100px) scale(1.5);
             }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
         }
         
         /* Mobile-First Responsive Design */
@@ -371,7 +564,6 @@
                 padding: 0 15px;
             }
             
-            /* Mobile Navigation */
             .nav-links {
                 display: none;
                 position: absolute;
@@ -396,47 +588,40 @@
                 display: block;
             }
             
-            /* Hero Section */
-            .hero {
-                padding-top: 60px;
-            }
-            
             .hero-content h1 {
                 font-size: 3.5rem;
-                margin-bottom: 15px;
+            }
+            
+            .wifey-text {
+                font-size: 2rem;
+            }
+            
+            .kiss-text {
+                font-size: 1.5rem;
             }
             
             .hero-content p {
                 font-size: 1.1rem;
-                margin-bottom: 20px;
-            }
-            
-            /* Name Section */
-            .name-section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 30px;
-            }
-            
-            .name-container {
-                height: 250px;
             }
             
             .name-display {
                 font-size: 3.5rem;
-                gap: 10px;
             }
             
             .floating-letter {
                 font-size: 3.5rem;
             }
             
-            /* Love Message */
-            .love-message {
-                padding: 80px 0;
+            .kiss-display {
+                font-size: 2.5rem;
+            }
+            
+            .memory-track {
+                height: 350px;
+            }
+            
+            .memory-item {
+                min-width: 250px;
             }
             
             .love-message h2 {
@@ -447,12 +632,12 @@
                 font-size: 1.1rem;
             }
             
-            .signature {
-                font-size: 1.8rem;
+            .kiss-ending {
+                font-size: 2rem;
             }
             
-            footer {
-                padding: 30px 0;
+            .signature {
+                font-size: 1.8rem;
             }
         }
         
@@ -469,37 +654,16 @@
                 font-size: 2.8rem;
             }
             
+            .memory-track {
+                height: 300px;
+            }
+            
             .love-message h2 {
                 font-size: 2rem;
             }
             
             .love-message p {
                 font-size: 1rem;
-            }
-        }
-        
-        /* Prevent horizontal scroll */
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        
-        /* Improve touch interactions */
-        button, .name-letter, .floating-letter {
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        /* Performance optimizations */
-        .hero-content h1, .floating-letter, .name-letter {
-            will-change: transform, opacity;
-        }
-        
-        /* Reduced motion for users who prefer it */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -513,19 +677,28 @@
                 <button class="mobile-menu-btn">☰</button>
                 <ul class="nav-links">
                     <li><a href="#name">Her Name</a></li>
+                    <li><a href="#kisses">Kisses</a></li>
+                    <li><a href="#memories">Memory Lane</a></li>
+                    <li><a href="#notes">Love Notes</a></li>
                     <li><a href="#message">My Love</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Kiss Text -->
     <section class="hero">
         <div class="hero-bg"></div>
-        <div class="floating-hearts" id="hearts-container"></div>
+        <div class="particles-container" id="particles"></div>
         <div class="hero-content">
             <h1>Kavya</h1>
+            <div class="wifey-text">My Wifeyy</div>
+            <div class="kiss-text">ummmmaaaa 💋</div>
             <p>The most beautiful part of my world</p>
+            <div class="secret-message" id="secretMessage">
+                <p>You found my secret message! I love you more than words can express 💖</p>
+            </div>
+            <button class="kiss-btn" id="secretBtn">Send a kiss to my wifeyy</button>
         </div>
         <div class="scroll-indicator">
             <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -553,142 +726,406 @@
                 <div class="floating-letter letter-y" data-letter="Y">Y</div>
                 <div class="floating-letter letter-a2" data-letter="A">A</div>
             </div>
+            <p class="touch-instruction">Tap the letters to discover their meaning</p>
         </div>
     </section>
 
-    <!-- Love Message -->
+    <!-- Kiss Counter Section - New Feature -->
+    <section id="kisses" class="kiss-counter">
+        <div class="container">
+            <h2 class="section-title">Virtual Kisses for My Wifeyy</h2>
+            <p>Every click sends a kiss to you</p>
+            <div class="kiss-display" id="kissCount">0 kisses sent</div>
+            <button class="kiss-btn" id="kissBtn">Send an ummmmaaaa 💋</button>
+            <button class="kiss-btn" id="multiKissBtn">Send 10 kisses 💋</button>
+        </div>
+    </section>
+
+    <!-- Memory Lane Section -->
+    <section id="memories" class="memory-lane">
+        <div class="container">
+            <h2 class="section-title">Our Memory Lane</h2>
+            <p>Scroll through some of our special moments together</p>
+            <div class="memory-track">
+                <div class="memory-scroll" id="memoryScroll">
+                    <div class="memory-item">
+                        <div class="memory-icon">💫</div>
+                        <h3>First Meeting</h3>
+                        <p>The day my life changed forever</p>
+                    </div>
+                    <div class="memory-item">
+                        <div class="memory-icon">😂</div>
+                        <h3>Shared Laughter</h3>
+                        <p>Moments that filled my heart with joy</p>
+                    </div>
+                    <div class="memory-item">
+                        <div class="memory-icon">🌅</div>
+                        <h3>Sunset Moments</h3>
+                        <p>Watching the world fade away together</p>
+                    </div>
+                    <div class="memory-item">
+                        <div class="memory-icon">🤗</div>
+                        <h3>Comforting Presence</h3>
+                        <p>Your support means everything to me</p>
+                    </div>
+                    <div class="memory-item">
+                        <div class="memory-icon">🌟</div>
+                        <h3>Future Dreams</h3>
+                        <p>All the beautiful moments yet to come</p>
+                    </div>
+                </div>
+            </div>
+            <div class="memory-nav" id="memoryNav">
+                <div class="nav-dot active" data-index="0"></div>
+                <div class="nav-dot" data-index="1"></div>
+                <div class="nav-dot" data-index="2"></div>
+                <div class="nav-dot" data-index="3"></div>
+                <div class="nav-dot" data-index="4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Notes Section with Kiss Theme -->
+    <section id="notes" class="love-notes">
+        <div class="container">
+            <h2 class="section-title">Love Notes</h2>
+            <p>Little messages from my heart to yours</p>
+            <div class="notes-container">
+                <div class="note" data-note="1">
+                    <div class="note-date">Always</div>
+                    <p>Your smile is my favorite sight in the world</p>
+                    <div class="note-kiss">ummmmaaaa 💋</div>
+                </div>
+                <div class="note" data-note="2">
+                    <div class="note-date">Forever</div>
+                    <p>I fall for you more with each passing day</p>
+                </div>
+                <div class="note" data-note="3">
+                    <div class="note-date">Eternally</div>
+                    <p>You make ordinary moments extraordinary</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Love Message - Enhanced with Kiss Text -->
     <section id="message" class="love-message">
         <div class="container">
-            <h2>My Dearest Kavya,</h2>
-            <p>From the moment you entered my life, everything changed. You brought colors to my monochrome world and meaning to my existence.</p>
-            <p>Your smile is my sunrise, your voice my favorite melody, and your presence my greatest comfort.</p>
-            <p>I promise to cherish every moment with you, to support your dreams, and to love you more with each passing day.</p>
-            <p>You are my everything.</p>
-            <div class="signature">Forever yours,<br>Your Baby</div>
+            <div class="message-container">
+                <h2>My Dearest Kavya,</h2>
+                <p class="visible">From the moment you entered my life, everything changed.</p>
+                <p>You brought colors to my monochrome world and meaning to my existence.</p>
+                <p>Your smile is my sunrise, your voice my favorite melody, and your presence my greatest comfort.</p>
+                <p>I promise to cherish every moment with you, to support your dreams, and to love you more with each passing day.</p>
+                <p>You are my everything.</p>
+                <div class="kiss-ending">ummmmaaaa 💋</div>
+                <div class="signature">Forever yours,<br>Your Baby</div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Made with ❤️ by Vihaan for my Kavya</p>
+            <p>Made with ❤️ by Vihaan for my wifeyy Kavya</p>
+            <p id="visitCount">This is your first visit. Welcome!</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Enhanced functionality for Kavya's website with kiss theme
+        
+        // ===== PARTICLE BACKGROUND =====
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 30 : 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random position
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random animation
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                particle.style.animation = `floatMobile ${duration}s infinite ease-in-out ${delay}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // ===== KISS COUNTER =====
+        let kissCount = localStorage.getItem('kavyaKissCount') || 0;
+        document.getElementById('kissCount').textContent = `${kissCount} kisses sent`;
+        
+        document.getElementById('kissBtn').addEventListener('click', function() {
+            sendKiss(1);
+        });
+        
+        document.getElementById('multiKissBtn').addEventListener('click', function() {
+            sendKiss(10);
+        });
+        
+        function sendKiss(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    kissCount++;
+                    localStorage.setItem('kavyaKissCount', kissCount);
+                    document.getElementById('kissCount').textContent = `${kissCount} kisses sent`;
+                    
+                    // Create floating kiss animation
+                    createFloatingKiss();
+                }, i * 200);
+            }
+        }
+        
+        function createFloatingKiss() {
+            const kiss = document.createElement('div');
+            kiss.innerHTML = 'ummmmaaaa 💋';
+            kiss.classList.add('kiss-animation');
+            kiss.style.left = Math.random() * 80 + 10 + '%';
+            kiss.style.top = '80%';
+            kiss.style.color = '#ff4d6d';
+            kiss.style.fontFamily = 'Dancing Script, cursive';
+            kiss.style.fontSize = '1.5rem';
+            
+            document.body.appendChild(kiss);
+            
+            setTimeout(() => {
+                kiss.remove();
+            }, 3000);
+        }
+        
+        // ===== SECRET MESSAGE =====
+        document.getElementById('secretBtn').addEventListener('click', function() {
+            const secretMessage = document.getElementById('secretMessage');
+            secretMessage.classList.toggle('show');
+            
+            // Change button text
+            this.textContent = secretMessage.classList.contains('show') ? 
+                'Hide Surprise' : 'Send a kiss to my wifeyy';
+                
+            // Add heart animation
+            if (secretMessage.classList.contains('show')) {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        createFloatingKiss();
+                    }, i * 300);
+                }
+            }
+        });
+        
+        // ===== MEMORY LANE CAROUSEL =====
+        const memoryScroll = document.getElementById('memoryScroll');
+        const memoryNav = document.getElementById('memoryNav');
+        const navDots = memoryNav.querySelectorAll('.nav-dot');
+        let currentMemoryIndex = 0;
+        
+        // Initialize dots
+        navDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                scrollToMemory(index);
+            });
+        });
+        
+        function scrollToMemory(index) {
+            currentMemoryIndex = index;
+            const scrollPosition = index * 330; // Width of memory item + margin
+            
+            memoryScroll.style.transform = `translateX(-${scrollPosition}px)`;
+            
+            // Update active dot
+            navDots.forEach(dot => dot.classList.remove('active'));
+            navDots[index].classList.add('active');
+        }
+        
+        // Auto-scroll memories
+        setInterval(() => {
+            currentMemoryIndex = (currentMemoryIndex + 1) % navDots.length;
+            scrollToMemory(currentMemoryIndex);
+        }, 5000);
+        
+        // ===== LOVE NOTES INTERACTION =====
+        const notes = document.querySelectorAll('.note');
+        
+        notes.forEach(note => {
+            note.addEventListener('click', function() {
+                const noteId = this.getAttribute('data-note');
+                showNoteMessage(noteId);
+            });
+        });
+        
+        function showNoteMessage(noteId) {
+            const messages = {
+                1: "I meant every word. Your smile truly lights up my world!",
+                2: "It's true - my love for you grows stronger every single day.",
+                3: "Even the most ordinary moments become magical with you."
+            };
+            
+            // Remove any existing note messages
+            document.querySelectorAll('.note-message').forEach(msg => msg.remove());
+            
+            const message = document.createElement('div');
+            message.classList.add('note-message');
+            message.textContent = messages[noteId];
+            message.style.position = 'fixed';
+            message.style.bottom = '20px';
+            message.style.left = '50%';
+            message.style.transform = 'translateX(-50%)';
+            message.style.background = 'rgba(255, 77, 109, 0.9)';
+            message.style.color = 'white';
+            message.style.padding = '10px 20px';
+            message.style.borderRadius = '5px';
+            message.style.zIndex = '1000';
+            message.style.fontFamily = 'Dancing Script, cursive';
+            message.style.fontSize = '1.2rem';
+            
+            document.body.appendChild(message);
+            
+            // Send a kiss when note is clicked
+            sendKiss(1);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 3000);
+        }
+        
+        // ===== VISIT COUNTER =====
+        function updateVisitCounter() {
+            let visitCount = localStorage.getItem('kavyaSiteVisits');
+            
+            if (!visitCount) {
+                visitCount = 1;
+                document.getElementById('visitCount').textContent = "This is your first visit. Welcome!";
+            } else {
+                visitCount = parseInt(visitCount) + 1;
+                document.getElementById('visitCount').textContent = `You've visited this page ${visitCount} times. I must be on your mind!`;
+            }
+            
+            localStorage.setItem('kavyaSiteVisits', visitCount);
+        }
+        
+        // ===== SCROLL ANIMATIONS =====
+        function initScrollAnimations() {
+            const messageParagraphs = document.querySelectorAll('.love-message p');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            messageParagraphs.forEach((p, index) => {
+                // Stagger the animation
+                p.style.transitionDelay = `${index * 0.2}s`;
+                observer.observe(p);
+            });
+        }
+        
+        // ===== NAME CONTAINER INTERACTION =====
+        const nameContainer = document.getElementById('nameContainer');
+        const letters = document.querySelectorAll('.floating-letter');
+        let interactionTimeout;
+        
+        if (nameContainer) {
+            // For desktop hover
+            nameContainer.addEventListener('mouseenter', function() {
+                clearTimeout(interactionTimeout);
+                this.classList.add('active');
+            });
+            
+            nameContainer.addEventListener('mouseleave', function() {
+                interactionTimeout = setTimeout(() => {
+                    this.classList.remove('active');
+                }, 1000);
+            });
+            
+            // For mobile touch
+            nameContainer.addEventListener('touchstart', function() {
+                clearTimeout(interactionTimeout);
+                this.classList.add('active');
+            });
+            
+            nameContainer.addEventListener('touchend', function() {
+                interactionTimeout = setTimeout(() => {
+                    this.classList.remove('active');
+                }, 3000);
+            });
+        }
+        
+        // Make letters interactive
+        letters.forEach(letter => {
+            letter.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showLetterMeaning(this);
+            });
+        });
+        
+        function showLetterMeaning(letterElement) {
+            const meanings = {
+                'K': 'Kindness that knows no bounds',
+                'A': 'Amazing in every way',
+                'V': 'Vibrant spirit that inspires',
+                'Y': 'Yearning to make the world better',
+                'A2': 'Always there when I need you'
+            };
+            
+            const letter = letterElement.getAttribute('data-letter');
+            const meaning = letter === 'A' && letterElement.classList.contains('letter-a2') ? 
+                meanings['A2'] : meanings[letter];
+            
+            // Remove any existing letter messages
+            document.querySelectorAll('.letter-message').forEach(msg => msg.remove());
+            
+            const message = document.createElement('div');
+            message.classList.add('letter-message');
+            message.textContent = meaning;
+            message.style.position = 'fixed';
+            message.style.top = '50%';
+            message.style.left = '50%';
+            message.style.transform = 'translate(-50%, -50%)';
+            message.style.background = 'rgba(0, 0, 0, 0.8)';
+            message.style.color = 'white';
+            message.style.padding = '15px 25px';
+            message.style.borderRadius = '10px';
+            message.style.border = '2px solid #ff4d6d';
+            message.style.zIndex = '1000';
+            message.style.fontFamily = 'Dancing Script, cursive';
+            message.style.fontSize = '1.5rem';
+            message.style.textAlign = 'center';
+            
+            document.body.appendChild(message);
+            
+            // Send a kiss when letter is clicked
+            sendKiss(1);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 2000);
+        }
+        
+        // ===== MOBILE MENU TOGGLE =====
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
         
-        mobileMenuBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('active');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
             });
-        });
-
-        // Create floating hearts in the background (optimized for mobile)
-        const heartsContainer = document.getElementById('hearts-container');
-        const heartCount = window.innerWidth < 768 ? 10 : 15;
-        
-        for (let i = 0; i < heartCount; i++) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.top = Math.random() * 100 + '%';
-            heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
-            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            heart.style.animationDelay = (Math.random() * 5) + 's';
-            heartsContainer.appendChild(heart);
         }
-
-        // Name container interaction for both desktop and mobile
-        const nameContainer = document.getElementById('nameContainer');
-        let interactionTimeout;
         
-        // For desktop hover
-        nameContainer.addEventListener('mouseenter', function() {
-            clearTimeout(interactionTimeout);
-            this.classList.add('active');
-        });
-        
-        nameContainer.addEventListener('mouseleave', function() {
-            interactionTimeout = setTimeout(() => {
-                this.classList.remove('active');
-            }, 1000);
-        });
-        
-        // For mobile touch
-        nameContainer.addEventListener('touchstart', function() {
-            clearTimeout(interactionTimeout);
-            this.classList.add('active');
-        });
-        
-        nameContainer.addEventListener('touchend', function() {
-            interactionTimeout = setTimeout(() => {
-                this.classList.remove('active');
-            }, 3000);
-        });
-        
-        // Make letters interactive
-        const letters = document.querySelectorAll('.floating-letter');
-        
-        letters.forEach(letter => {
-            // Click to reveal meaning
-            letter.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                const meanings = {
-                    'K': 'Kindness that knows no bounds',
-                    'A': 'Amazing in every way',
-                    'V': 'Vibrant spirit that inspires',
-                    'Y': 'Yearning to make the world better',
-                    'A2': 'Always there when I need you'
-                };
-                
-                const letterChar = this.getAttribute('data-letter');
-                const meaning = meanings[letterChar === 'A2' ? 'A2' : letterChar];
-                
-                // Remove any existing tooltips
-                document.querySelectorAll('.letter-tooltip').forEach(tooltip => {
-                    tooltip.remove();
-                });
-                
-                // Create a tooltip
-                const tooltip = document.createElement('div');
-                tooltip.classList.add('letter-tooltip');
-                tooltip.style.position = 'fixed';
-                tooltip.style.background = 'rgba(255, 77, 109, 0.95)';
-                tooltip.style.color = 'white';
-                tooltip.style.padding = '10px 15px';
-                tooltip.style.borderRadius = '8px';
-                tooltip.style.zIndex = '1000';
-                tooltip.style.fontSize = '1rem';
-                tooltip.style.fontFamily = 'Montserrat, sans-serif';
-                tooltip.style.textAlign = 'center';
-                tooltip.style.maxWidth = '80%';
-                tooltip.style.left = '50%';
-                tooltip.style.top = '50%';
-                tooltip.style.transform = 'translate(-50%, -50%)';
-                tooltip.textContent = meaning;
-                
-                document.body.appendChild(tooltip);
-                
-                // Remove tooltip after 3 seconds
-                setTimeout(() => {
-                    if (tooltip.parentNode) {
-                        tooltip.remove();
-                    }
-                }, 3000);
-            });
-        });
-
-        // Smooth scrolling for navigation links
+        // ===== SMOOTH SCROLLING =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -698,43 +1135,28 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.textContent = '☰';
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
-
-        // Scroll to sections
-        document.querySelector('.scroll-indicator').addEventListener('click', function() {
-            document.querySelector('#name').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
         
-        // Improve touch experience
-        document.addEventListener('touchmove', function(e) {
-            // Prevent zooming
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-        
-        // Performance optimization: reduce animations when page is not visible
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                // Pause animations when page is not visible
-                document.querySelectorAll('.heart, .floating-letter').forEach(el => {
-                    el.style.animationPlayState = 'paused';
-                });
-            } else {
-                // Resume animations when page becomes visible again
-                document.querySelectorAll('.heart, .floating-letter').forEach(el => {
-                    el.style.animationPlayState = 'running';
-                });
-            }
+        // ===== INITIALIZE EVERYTHING =====
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            updateVisitCounter();
+            initScrollAnimations();
+            
+            // Set initial memory scroll position
+            scrollToMemory(0);
         });
     </script>
 </body>
